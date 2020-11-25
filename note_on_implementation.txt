@@ -1,0 +1,18 @@
+
+This condition in the Singles class:
+	other.desirability >= @sought_desirability || other.desirability > avg_desirability_other_singles
+some people duplicated in the Zin class, replacing 
+	other.desirability 
+with
+	other.desirability + num_of_common_hobbies(other)
+
+Some noticed this duplication (well done!), and avoided it e.g. by adding an additional argument to the match method, which is a bit clumsy.
+
+A better solution to this is what you'll see in the sample solution. The method
+	perceived_desirability
+is how one single perceives the desirability of another. The default implementation in Single is simply
+	other.desirability
+This definition is correct for Aga as well. In Zin, we override perceived_desirability this way:
+	super + num_of_common_hobbies(other)
+	
+It's worthwhile studying this as it's a nice use of overriding (refinement actually) to avoid code duplication.
